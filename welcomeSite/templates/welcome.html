@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/style.css">
+<h1>Hi {{user.username}}!</h1>
+<p> I am Mrinal, contesting for the post of department head, Web</p>
+<div>
+    <p>My top 2 initiatives are: </p>
+    <p><strong>1. Gallery Page</strong> : Plan to make a page with photos of the initiatives as well as the teams of each year which show our bond as a team.
+    </p>
+    <p><strong>2. Change the existing Website</strong> : Start working on a new website which will replace the existing one. It will be in Django.</p>
+</div>
+<p><a href="{% url 'logout' %}" style="color: red;">Log Out</a></p>
+{% endblock %}
