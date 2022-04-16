@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,14 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="/static/style.css">
-    <script src="/static/login.js"></script>
-    
 </head>
 <body>
-    {% load static %}
+    
     {% load widget_tweaks %}
     {% block content %} 
-    <div class="container right-panel-active" id="container">
+    <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form method="POST">
                 <h1>Create Account</h1>
@@ -31,13 +29,12 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="/login" method="POST">
                 <h1>Sign in</h1>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
+                <input type="text"  placeholder="Username" name="username" id = "username" />
+                <input type="password" placeholder="Password" name="password" id="password" />
                 {%csrf_token%}
-                <button>Sign In</button>
+                <button type="submit">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -55,6 +52,22 @@
             </div>
         </div>
     </div>
+    <div>
+        <br><br>
+        {% for message in messages  %}<div class="alert alert-warning" role="alert">{{message}}</div> {% endfor %}
+    </div>
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    </script>
 
     {% endblock %}
 </body>
